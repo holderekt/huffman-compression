@@ -16,7 +16,7 @@ public class HuffmanTreeOutputStream {
 
     public HuffmanTreeOutputStream(HuffmanTree tree, String filename, byte[] data) throws FileNotFoundException {
         this.tree = tree;
-        this.bitOut = new BitOutputStream("mario2.txt");
+        this.bitOut = new BitOutputStream(filename);
         this.data = data;
     }
 
@@ -24,7 +24,6 @@ public class HuffmanTreeOutputStream {
         bitOut.write((byte)tree.byteCodes.keySet().size());
         writeTree(tree.root);
         bitOut.close();
-        testread();
     }
 
     private void writeTree(HuffmanNode node) throws IOException {
@@ -38,26 +37,19 @@ public class HuffmanTreeOutputStream {
         }
     }
 
-
-    public void testread() throws IOException{
-        BitInputStream test = new BitInputStream("mario2.txt");
-        byte a = test.readByte();
-        HuffmanNode root = recursiveNodeSearch(test);
-        HuffmanTree mario = new HuffmanTree(root);
-        mario.print();
-
-        test.close();
+    private void writeData() throws IOException {
+        for(byte bt : data){
+            writeBinaryString(tree.getCode(bt));
+        }
     }
 
-    public HuffmanNode recursiveNodeSearch(BitInputStream stream) throws IOException {
-            int currentBit = stream.read();
-            if(currentBit == 1){
-                return new HuffmanNode(stream.readByte(), 0);
-            }else{
-                HuffmanNode parent = new HuffmanNode(null, 0);
-                parent.addLeftNode(recursiveNodeSearch(stream));
-                parent.addRightNode(recursiveNodeSearch(stream));
-                return parent;
-            }
+    //TODO Aggiustare
+    private void writeBinaryString(String binstr) throws IOException {
+        for(int index = binstr.length() - 1; index >= 0; index--){
+            bitOut.write(Integer.parseInt(String.valueOf(binstr.charAt(index))));
+        }
     }
+
+
+
 }
