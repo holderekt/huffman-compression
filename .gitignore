@@ -2,6 +2,7 @@ out/
 .gradle/
 gradle/
 .idea/
+.idea
 build/
 *.txt
 gradlew.bat
