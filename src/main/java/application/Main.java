@@ -12,7 +12,7 @@ public class Main {
         HuffmanTree tree = new HuffmanTree(loader.readAllBytes());
         tree.print();
         System.out.println("\n --- Write testing --- \n");
-        HuffmanTreeOutputStream m = new HuffmanTreeOutputStream(tree, "mario2.txt", null);
+        HuffmanTreeOutputStream m = new HuffmanTreeOutputStream(tree, "mario2.txt");
         m.write();
 
         HuffmanTreeInputStream maro = new HuffmanTreeInputStream("mario2.txt");

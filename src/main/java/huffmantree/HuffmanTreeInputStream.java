@@ -15,9 +15,7 @@ public class HuffmanTreeInputStream {
     public void loadTree() throws IOException{
         byte size = inStream.readByte();
         HuffmanNode root = recursiveNodeSearch();
-        HuffmanTree mario = new HuffmanTree(null, root );
-        mario.print();
-
+        decodeTree(root);
         inStream.close();
     }
 
@@ -31,6 +29,11 @@ public class HuffmanTreeInputStream {
             parent.addRightNode(recursiveNodeSearch());
             return parent;
         }
+    }
+
+    public byte[] decodeTree(HuffmanNode root) throws IOException {
+        System.out.println(inStream.avaible());
+        return null;
     }
 
 }

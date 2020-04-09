@@ -23,6 +23,10 @@ public class HuffmanTree {
         this.generateCodes();
     }
 
+    public byte[] getData(){
+        return data;
+    }
+
 
     private HuffmanNode generateTree(PriorityQueue<HuffmanNode> queue){
         do{
