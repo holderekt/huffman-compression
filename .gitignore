@@ -5,5 +5,7 @@ gradle/
 .idea
 build/
 *.txt
+*.pdf
+*.png
 gradlew.bat
 gradlew

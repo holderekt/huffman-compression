@@ -1,6 +1,9 @@
 package huffmantree;
 
-import main.java.bitstream.BitOutputStream;
+import bitstream.BitOutputStream;
+import bitstream.BitUtils;
+import bitstream.BufferedBitOutputStream;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -12,7 +15,7 @@ public class HuffmanTreeOutputStream {
 
     public HuffmanTreeOutputStream(HuffmanTree tree, String filename) throws FileNotFoundException {
         this.tree = tree;
-        this.bitOut = new BitOutputStream(filename);
+        this.bitOut = new BufferedBitOutputStream(filename);
     }
 
     public void write() throws IOException {
@@ -28,7 +31,7 @@ public class HuffmanTreeOutputStream {
         for(byte b : tree.getData()){
             padding += tree.getCode(b).length();
         }
-        return padding % 8;
+        return 8 - padding % 8;
     }
 
     private void writeTree(HuffmanNode node) throws IOException {

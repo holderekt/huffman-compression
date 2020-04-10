@@ -91,4 +91,10 @@ public class HuffmanTree {
     public String getCode(byte b){
         return byteCodes.get(b);
     }
+
+    public void print(){
+        for(byte a : byteCodes.keySet()){
+            System.out.println((char)a + " " + byteCodes.get(a));
+        }
+    }
 }

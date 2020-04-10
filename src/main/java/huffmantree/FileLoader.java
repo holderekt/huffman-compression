@@ -22,10 +22,7 @@ public class FileLoader {
 
     public byte[] readAllBytes() throws IOException {
         byte[] data = new byte[inputStream.available()];
-        int index = 0;
-        while(inputStream.available() > 0){
-            data[index++] = (byte)inputStream.read();
-        }
+        inputStream.read(data);
         return data;
     }
 }

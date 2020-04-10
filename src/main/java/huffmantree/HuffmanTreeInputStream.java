@@ -1,6 +1,7 @@
 package huffmantree;
 
-import main.java.bitstream.BitInputStream;
+import bitstream.BitInputStream;
+import bitstream.BufferedBitInputStream;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,8 +12,8 @@ public class HuffmanTreeInputStream {
     byte size;
     byte padding;
 
-    public HuffmanTreeInputStream(String filename) throws FileNotFoundException {
-        inStream = new BitInputStream(filename);
+    public HuffmanTreeInputStream(String filename) throws IOException {
+        inStream = new BufferedBitInputStream(filename);
     }
 
     public HuffmanTree loadTree() throws IOException{
@@ -39,7 +40,7 @@ public class HuffmanTreeInputStream {
         HuffmanNode currentNode = root;
         ArrayList<Byte> dataBuffer = new ArrayList<>();
 
-        while((inStream.avaible() - padding) > 0){
+        while((inStream.available() - padding) > 0){
             int bit = inStream.read();
             if(bit == 0)
                     currentNode = currentNode.leftNode;
