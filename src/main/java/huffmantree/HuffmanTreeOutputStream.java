@@ -17,10 +17,18 @@ public class HuffmanTreeOutputStream {
 
     public void write() throws IOException {
         bitOut.write((byte)tree.byteCodes.keySet().size());
+        bitOut.write((byte)paddingPreview());
         writeTree(tree.root);
         writeData();
         bitOut.close();
-        System.out.println("Padding:" + bitOut.getPadding());
+    }
+
+    private int paddingPreview(){
+        int padding = tree.size;
+        for(byte b : tree.getData()){
+            padding += tree.getCode(b).length();
+        }
+        return padding % 8;
     }
 
     private void writeTree(HuffmanNode node) throws IOException {

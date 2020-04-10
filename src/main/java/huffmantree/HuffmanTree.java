@@ -8,6 +8,7 @@ public class HuffmanTree {
     HuffmanNode root;
     HashMap<Byte, String> byteCodes = new HashMap<>();
     byte[] data;
+    int size = 0;
 
 
     public HuffmanTree(byte[] data, HuffmanNode root){
@@ -30,6 +31,7 @@ public class HuffmanTree {
 
     private HuffmanNode generateTree(PriorityQueue<HuffmanNode> queue){
         do{
+            size += 2;
             HuffmanNode leftNode = queue.poll();
             HuffmanNode rightNode = queue.poll();
             HuffmanNode parent = new HuffmanNode(
@@ -40,7 +42,7 @@ public class HuffmanTree {
             parent.addRightNode(rightNode);
             queue.add(parent);
         }while(queue.size() != 1);
-
+        size += 1;
         return queue.poll();
     }
 
@@ -74,7 +76,6 @@ public class HuffmanTree {
 
     private void generateCodeRecursive(HuffmanNode node, String bufferString){
         if(isLeaf(node)){
-            System.out.println("");
             byteCodes.put(node.getValue(), bufferString);
         }else{
             generateCodeRecursive(node.leftNode, bufferString + "0");
@@ -85,13 +86,6 @@ public class HuffmanTree {
 
     private boolean isLeaf(HuffmanNode node){
         return node.isLeaf();
-    }
-
-
-    public void print(){
-        for(Byte b : byteCodes.keySet()){
-            System.out.println((char) b.byteValue() + " " + byteCodes.get(b));
-        }
     }
 
     public String getCode(byte b){
