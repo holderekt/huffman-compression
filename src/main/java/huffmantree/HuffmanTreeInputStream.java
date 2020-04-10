@@ -3,7 +3,6 @@ package huffmantree;
 import bitstream.BitInputStream;
 import bitstream.BufferedBitInputStream;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 

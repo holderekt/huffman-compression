@@ -1,7 +1,6 @@
 package huffmantree;
 
 import bitstream.BitOutputStream;
-import bitstream.BitUtils;
 import bitstream.BufferedBitOutputStream;
 
 import java.io.FileInputStream;

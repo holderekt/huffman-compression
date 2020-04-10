@@ -4,8 +4,11 @@ gradle/
 .idea/
 .idea
 build/
+testfiles/
 *.txt
 *.pdf
 *.png
+*.iso
+*.zip
 gradlew.bat
 gradlew
